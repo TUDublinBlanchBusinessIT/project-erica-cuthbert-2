@@ -17,6 +17,17 @@ $port = 3306;
       }
 
       echo "</TABLE>";
+      
+
+      echo "<TABLE>";
+      while($row = mysqli_fetch_assoc($result)) {
+        $id = $row['ID'];
+        $fname = $row['Firstname'];
+        $sname = $row['Surname'];
+        echo "<TR><TD>$fname</TD><TD>$sname</TD></TR>";
+      }
+      echo "</TABLE>"
+
     ?>
   </body>
 </html>
