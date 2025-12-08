@@ -2,7 +2,7 @@
 $servername = "tennisclub";
 $username = "root";
 $password = "pass";
-$dbname = "createTennisClubDB.sql";
+$dbname = "database1";
 $port = 3306;
 
 

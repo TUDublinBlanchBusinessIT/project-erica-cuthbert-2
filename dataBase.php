@@ -1,22 +1,23 @@
 <?php
-$servername= "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDB"
+$servername = "localhost";
+$username = "root";
+$password = "db2025";
+$dbname = "database1";
+$port = 3307;
 
-$conn = mysqli_connect($servername, $username, $password, $dbname )
+$conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 
 if (!$conn){
     die("Failed: " . mysqli_connect_error());
 }
 
 $sql = "INSERT INTO MyGuests (firstname, lastname, email)
-VALUE ('Jane', 'Doe', 'janedoe@gmail.com')";
+VALUES ('Jane', 'Doe', 'janedoe@gmail.com')";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" : mysqli_connect($conn);
+    echo "Error: " . mysqli_error($conn);
 }
 
 mysqli_close($conn);
