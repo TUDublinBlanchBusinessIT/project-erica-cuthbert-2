@@ -1,33 +1,41 @@
 <?php
-$servername = "tennisclub";
+$servername = "localhost";
 $username = "root";
-$password = "pass";
+$password = "db2025";
 $dbname = "database1";
-$port = 3306;
+$port = 3307;
 
+$conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 
-      echo "<TABLE border='1'>";
+$sql = "SELECT * FROM MyGuests";
+$result = mysqli_query($conn, $sql);
 
-      for ($i = 0; $i <= 4; $i++) {
-        echo "<tr>";
-        for ($j = 0; $j <= 4; $j++) {
-          echo "<td>$i, $j</td>";
-        }
-        echo "</tr>";
-      }
+echo "<TABLE border='1'>";
+for ($i = 0; $i <= 4; $i++) {
+  echo "<tr>";
+  for ($j = 0; $j <= 4; $j++) {
+    echo "<td>$i, $j</td>";
+  }
+  echo "</tr>";
+}
+echo "</TABLE>";
 
-      echo "</TABLE>";
-      
+echo "<TABLE>";
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<TR><TD>" . $row['firstname'] . "</TD><TD>" . $row['lastname'] . "</TD></TR>";
+}
+echo "</TABLE>";
 
-      echo "<TABLE>";
-      while($row = mysqli_fetch_assoc($result)) {
-        $id = $row['ID'];
-        $fname = $row['Firstname'];
-        $sname = $row['Surname'];
-        echo "<TR><TD>$fname</TD><TD>$sname</TD></TR>";
-      }
-      echo "</TABLE>"
+mysqli_close($conn);
 
-    ?>
-  </body>
-</html>
+$sql = "INSERT INTO MyGuests (firstname, lastname,)
+VALUES ('Jane', 'Doe')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>
