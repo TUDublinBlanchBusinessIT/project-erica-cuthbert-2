@@ -3,12 +3,12 @@ $servername = "localhost";
 $username = "root";
 $password = "pass";
 $dbname = "gp_surgery";
-$port = 3307;
+$port = 3306;
 
 $conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysql_connect_error());
 }
 
 ?>

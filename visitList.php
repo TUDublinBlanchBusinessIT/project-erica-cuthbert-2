@@ -16,5 +16,5 @@ while ($row = mysqli_fetch_assoc($result)) {
           </tr>";
 }
 
-mysqli_close($conn);
+mysql_close($conn);
 ?>

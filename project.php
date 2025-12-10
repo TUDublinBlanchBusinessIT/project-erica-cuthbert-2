@@ -1,9 +1,9 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "pass";
 $dbname = "gp_surgery";
-$port = 3307;
+$port = 3306;
 
 $conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 
@@ -19,7 +19,7 @@ $doctorID = $_POST['docid'];
 $patientID = $_POST['ptntid'];
 $cost = $_POST['cost'];
 
-$sql = "INSERT INTO visit (visit_date, visit_time, doctor_id, patient_id, cost)
+$sqli = "INSERT INTO visit (visit_date, visit_time, doctor_id, patient_id, cost)
         VALUES ('$visitDate', '$visitTime', '$doctorID', '$patientID', '$cost')";
 
 mysqli_query($conn, $sql);
