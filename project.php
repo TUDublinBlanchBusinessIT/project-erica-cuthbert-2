@@ -1,41 +1,28 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "db2025";
-$dbname = "database1";
+$password = "";
+$dbname = "gp_surgery";
 $port = 3307;
 
 $conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 
-$sql = "SELECT * FROM MyGuests";
-$result = mysqli_query($conn, $sql);
-
-echo "<TABLE border='1'>";
-for ($i = 0; $i <= 4; $i++) {
-  echo "<tr>";
-  for ($j = 0; $j <= 4; $j++) {
-    echo "<td>$i, $j</td>";
-  }
-  echo "</tr>";
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-echo "</TABLE>";
 
-echo "<TABLE>";
-while ($row = mysqli_fetch_assoc($result)) {
-  echo "<TR><TD>" . $row['firstname'] . "</TD><TD>" . $row['lastname'] . "</TD></TR>";
-}
-echo "</TABLE>";
+include 'dbcon.php';
 
-mysqli_close($conn);
+$visitDate = $_POST['visitDate'];
+$visitTime = $_POST['visitTime'];
+$doctorID = $_POST['docid'];
+$patientID = $_POST['ptntid'];
+$cost = $_POST['cost'];
 
-$sql = "INSERT INTO MyGuests (firstname, lastname,)
-VALUES ('Jane', 'Doe')";
+$sql = "INSERT INTO visit (visit_date, visit_time, doctor_id, patient_id, cost)
+        VALUES ('$visitDate', '$visitTime', '$doctorID', '$patientID', '$cost')";
 
-if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . mysqli_error($conn);
-}
+mysqli_query($conn, $sql);
 
 mysqli_close($conn);
 ?>
